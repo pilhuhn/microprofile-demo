@@ -1,7 +1,7 @@
 package de.bsd.swarmdemo.rest;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
@@ -13,7 +13,7 @@ import org.eclipse.microprofile.metrics.annotation.Counted;
 import org.eclipse.microprofile.metrics.annotation.Metric;
 import org.eclipse.microprofile.metrics.annotation.Timed;
 
-@ApplicationScoped
+@RequestScoped
 @Path("/hello")
 public class HelloWorldEndpoint  {
 
