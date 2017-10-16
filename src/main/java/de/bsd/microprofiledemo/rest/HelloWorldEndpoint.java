@@ -1,4 +1,4 @@
-package de.bsd.swarmdemo.rest;
+package de.bsd.microprofiledemo.rest;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;

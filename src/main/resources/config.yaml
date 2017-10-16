@@ -1,0 +1,21 @@
+kumuluzee:
+  server:
+    # server context path (defaults to /)
+#    context-path: /test
+    # force HTTPS (disabled by default)
+    force-https: false
+    # minimum server threads (defaults to 5)
+    min-threads: 5
+    # maximum server threads (defaults to 100)
+    max-threads: 50
+    http:
+      # HTTP port (defaults to 8080)
+      port: 10080
+      # bind address
+      address: 0.0.0.0
+  metrics:
+    jvm:
+      enabled: true
+      registry-name: myJvm
+    prometheus:
+      mapping: /prometheus
