@@ -25,12 +25,12 @@ import org.eclipse.microprofile.health.HealthCheckResponseBuilder;
 /**
  * @author hrupp
  */
-@Health
 @ApplicationScoped
+@Health
 public class HealthDemo implements HealthCheck {
+
   @Override
  	public HealthCheckResponse call() {
-		System.out.println("Health-call");
 		HealthCheckResponseBuilder alive = HealthCheckResponse.named("alive");
 		// Other info
 		alive.withData("hello","world");

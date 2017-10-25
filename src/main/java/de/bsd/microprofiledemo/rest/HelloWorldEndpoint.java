@@ -27,7 +27,7 @@ public class HelloWorldEndpoint  {
 	@PostConstruct
 	public void startup() {
 		aCounter.inc(42);
-    System.out.println("+++ Post Construct");
+		histogram.update(42);
   }
 
 	@GET

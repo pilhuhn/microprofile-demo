@@ -13,9 +13,3 @@ kumuluzee:
       port: 10080
       # bind address
       address: 0.0.0.0
-  metrics:
-    jvm:
-      enabled: true
-      registry-name: myJvm
-    prometheus:
-      mapping: /prometheus

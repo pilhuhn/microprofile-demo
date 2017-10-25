@@ -9,7 +9,7 @@
   <packaging>war</packaging>
 
   <properties>
-    <version.wildfly.swarm>2017.10.0-SNAPSHOT</version.wildfly.swarm>
+    <version.wildfly.swarm>2017.11.0-SNAPSHOT</version.wildfly.swarm>
     <version.kumuluz>2.4.1</version.kumuluz>
     <version.kumuluzee-metrics>1.0.0-SNAPSHOT</version.kumuluzee-metrics>
     <maven.compiler.source>1.8</maven.compiler.source>
@@ -66,6 +66,9 @@
                 <goals>
                   <goal>package</goal>
                 </goals>
+                <configuration>
+                  <hollow>true</hollow>
+                </configuration>
               </execution>
             </executions>
           </plugin>
@@ -131,11 +134,6 @@
         <dependency>
             <groupId>com.kumuluz.ee.metrics</groupId>
             <artifactId>kumuluzee-metrics-core</artifactId>
-            <version>${version.kumuluzee-metrics}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.kumuluz.ee.metrics</groupId>
-            <artifactId>kumuluzee-metrics-prometheus</artifactId>
             <version>${version.kumuluzee-metrics}</version>
         </dependency>
       </dependencies>
