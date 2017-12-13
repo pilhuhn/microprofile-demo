@@ -1,0 +1,30 @@
+= MicroProfile Demo
+
+Small demo application for MicroProfile 1.2
+
+To build with http://wildfly-swarm.io/[WildFly Swarm] you can run
+
+[source, java]
+----
+$ mvn clean -Pswarm install
+$ java -jar target/swarm-demo.jar
+----
+
+When the server is running you can invoke the application via
+
+[source,shell]
+----
+$ curl http://localhost:8080/hello
+----
+
+If you start the server with option `-Dmp.what=<greeting>` you can change the greeting text
+
+[source, java]
+----
+$ mvn clean -Pswarm install
+$ java -Dmp.what=Bonjour -jar target/swarm-demo.jar
+----
+
+Metrics are exposed under the `/metrics` endpoint and health data via `/health`.
+
+
