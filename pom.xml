@@ -9,8 +9,8 @@
   <packaging>war</packaging>
 
   <properties>
-    <version.wildfly.swarm>2017.11.0-SNAPSHOT</version.wildfly.swarm>
-    <version.kumuluz>2.4.1</version.kumuluz>
+    <version.wildfly.swarm>2017.12.0</version.wildfly.swarm>
+    <version.kumuluz>2.5.0-SNAPSHOT</version.kumuluz>
     <version.kumuluzee-metrics>1.0.0-SNAPSHOT</version.kumuluzee-metrics>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
@@ -49,7 +49,7 @@
         <!-- the mp health fraction -->
         <dependency>
           <groupId>org.wildfly.swarm</groupId>
-          <artifactId>monitor</artifactId>
+          <artifactId>microprofile-health</artifactId>
         </dependency>
       </dependencies>
 
@@ -66,9 +66,11 @@
                 <goals>
                   <goal>package</goal>
                 </goals>
+<!--
                 <configuration>
                   <hollow>true</hollow>
                 </configuration>
+-->
               </execution>
             </executions>
           </plugin>
@@ -129,12 +131,7 @@
       <dependencies>
         <dependency>
           <groupId>com.kumuluz.ee</groupId>
-          <artifactId>kumuluzee-micro-profile</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.kumuluz.ee.metrics</groupId>
-            <artifactId>kumuluzee-metrics-core</artifactId>
-            <version>${version.kumuluzee-metrics}</version>
+          <artifactId>kumuluzee-microProfile-1.2</artifactId>
         </dependency>
       </dependencies>
 
@@ -144,7 +141,7 @@
           <plugin>
             <groupId>com.kumuluz.ee</groupId>
             <artifactId>kumuluzee-maven-plugin</artifactId>
-            <version>${version.kumuluz}</version>
+            <version>2.4.1</version>
             <executions>
               <execution>
                 <id>package</id>
@@ -198,6 +195,12 @@
       <groupId>org.eclipse.microprofile.health</groupId>
       <artifactId>microprofile-health-api</artifactId>
       <version>1.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.eclipse.microprofile.config</groupId>
+      <artifactId>microprofile-config-api</artifactId>
+      <version>1.1</version>
     </dependency>
   </dependencies>
 </project>
