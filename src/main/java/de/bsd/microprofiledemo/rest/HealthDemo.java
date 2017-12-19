@@ -33,7 +33,12 @@ public class HealthDemo implements HealthCheck {
  	public HealthCheckResponse call() {
 		HealthCheckResponseBuilder alive = HealthCheckResponse.named("alive");
 		// Other info
+		if (MyApplication.isHealthy) {
+			alive.up();
+		} else {
+			alive.down();
+		}
 		alive.withData("hello","world");
-		return alive.up().build();
+		return alive.build();
  	}
 }

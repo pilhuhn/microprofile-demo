@@ -6,4 +6,4 @@ spec:
           - name: AB_OFF
             value: true
           - name: MP_METRICS_TAGS
-            value: app=myHello  
+            value: app=mp-demo

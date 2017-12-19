@@ -24,4 +24,6 @@ import javax.ws.rs.core.Application;
  */
 @ApplicationPath("/")
 public class MyApplication extends Application {
+
+  public static boolean isHealthy = true;
 }

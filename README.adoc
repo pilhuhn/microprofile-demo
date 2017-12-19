@@ -1,3 +1,4 @@
+:icons: font
 = MicroProfile Demo
 
 Small demo application for MicroProfile 1.2
@@ -19,7 +20,7 @@ $ curl http://localhost:8080/hello
 
 If you start the server with option `-Dmp.what=<greeting>` you can change the greeting text
 
-[source, java]
+[source, bash]
 ----
 $ mvn clean -Pswarm install
 $ java -Dmp.what=Bonjour -jar target/swarm-demo.jar
@@ -27,4 +28,42 @@ $ java -Dmp.what=Bonjour -jar target/swarm-demo.jar
 
 Metrics are exposed under the `/metrics` endpoint and health data via `/health`.
 
+
+
+== Running on OpenShift
+
+If you want to run the demo on OpenShift, you can use the `openshift` profile
+
+E.g.
+
+[source, bash]
+----
+$ mvn clean -Pswarm,openshift fabric8:run
+----
+
+== The endpoints
+
+=== Health
+
+You can hit `/health` to get the application health as per MicroProfile Health specification
+
+=== Metrics
+
+You can hit `/metrics` to get the metrics.
+
+Application specific metrics are exposed under `/metrics/application`
+
+=== Application , /hello
+
+NOTE: this may be under a specific context root like /demo depending on the server you are using.
+
+* GET /hello: Return some greeting. Contents is dependent on the configuration as shown above.
+
+* GET /hello/health: Tries to call the /hello/slow service and uses MicroProfile Fault Tolerance to retry
+and fall back if the endpoint is too slow to respond
+
+* GET /hello/slow: returns a 204 no content response. The response may randomly be delayed.
+
+* POST /hello/unhealthy: sets the internal healthy flag to `false` so that a call to the
+MicroProfile Health endpoint will report as down.
 
