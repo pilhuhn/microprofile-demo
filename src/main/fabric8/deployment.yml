@@ -2,8 +2,17 @@ spec:
   template:
     spec:
       containers:
-        - env:
+        - name: mp-demo
+          env:
           - name: AB_OFF
             value: true
           - name: MP_METRICS_TAGS
             value: app=mp-demo
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 20
+            periodSeconds: 10
+            timeoutSeconds: 2
+
