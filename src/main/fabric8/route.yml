@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Route
 metadata:
-  name: swarm-demo
+  name: mp-demo
 spec:
   port:
     targetPort: 8080
   to:
     kind: Service
-    name: swarm-demo
+    name: mp-demo
