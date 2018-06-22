@@ -20,7 +20,10 @@ import org.eclipse.microprofile.faulttolerance.Retry;
 import org.eclipse.microprofile.faulttolerance.Timeout;
 import org.eclipse.microprofile.metrics.Counter;
 import org.eclipse.microprofile.metrics.annotation.Counted;
+import org.eclipse.microprofile.metrics.annotation.HitCounted;
+import org.eclipse.microprofile.metrics.annotation.Metered;
 import org.eclipse.microprofile.metrics.annotation.Metric;
+import org.eclipse.microprofile.metrics.annotation.ParallelCounted;
 import org.eclipse.microprofile.metrics.annotation.Timed;
 
 @RequestScoped
@@ -41,13 +44,26 @@ public class HelloWorldEndpoint  {
 
 	@GET
 	@Produces("text/plain")
-	@Counted(description = "Counting of the Hello call", absolute = true, tags = {"app=shop","type=counter"}, monotonic
-			= true)
-	@Timed(name="helloTime", description = "Timing of the Hello call", absolute = true, tags = {"app=shop","type=timer"})
+	@HitCounted(description = "Counting of the Hello call",
+							absolute = true,
+							tags = {"app=shop","type=counter"})
+	@Timed
 	public Response doGet() {
-		return Response.ok(what + " from WildFly Swarm! ").build();
+		return Response.ok(what + " from Thorntail! ").build();
 	}
 
+
+	@GET
+	@Path("/par")
+	@ParallelCounted(absolute = true, name = "par.count")
+	public Response parCounter() {
+		try {
+			Thread.sleep(1000L);
+			return Response.ok().build();
+		} catch (InterruptedException e) {
+			return Response.status(500).entity(e).build();
+		}
+	}
 
 	@GET
 	@Path("/health")
@@ -106,6 +122,19 @@ public class HelloWorldEndpoint  {
 
 	}
 
+	@GET
+	@Path("/meter")
+	@Metered(absolute = true, description = "Just testing @Metered")
+	public Response doMeter() {
+		if (Math.random() < 0.7) {  // TODO get factor from config
+					try {
+						Thread.sleep(800);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+				return Response.ok("/meter was called").build();
+	}
 
 	@POST
 	@Path("/unhealthy")
